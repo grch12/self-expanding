@@ -44,6 +44,7 @@ int main(int argc, char **argv)
     FILE *tmp_zip = fopen(tmp_filename, "wb+");
     fwrite(data, zip_size, 1, tmp_zip);
     fclose(tmp_zip);
+    free(data);
 
     char *dir_name;
     if (argc > 1)
@@ -52,6 +53,7 @@ int main(int argc, char **argv)
         dir_name = ".";
     
     zip_extract(tmp_filename, dir_name, NULL, NULL);
+    remove(tmp_filename);
 
 
     return 0;
