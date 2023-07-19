@@ -31,7 +31,7 @@ int main(int argc, char **argv)
         cat zip文件名 >> 本文件名\n\n\
         *注意：第二种方法会覆盖原始文件，请提前备份！\n\
         Windows CMD下运行时，请添加.exe扩展名，否则会报错`No such file or directory`\n\n\
-        解压时，直接运本文件会默认将文件提取到当前目录，也可通过命令行参数指定解压位置");
+        解压时，直接运行本文件会默认将文件提取到当前目录，也可通过命令行参数指定解压位置");
         getchar();
         exit(1);
     }
