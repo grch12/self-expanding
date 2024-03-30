@@ -1,4 +1,4 @@
-#define EXE_FILE_ORIGINAL_SIZE (size_t)179858
+#define EXE_FILE_ORIGINAL_SIZE (size_t)178881
 
 #include <stdio.h>
 #include <stdlib.h>
