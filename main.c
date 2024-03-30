@@ -1,4 +1,4 @@
-#define EXE_FILE_ORIGINAL_SIZE (size_t)181409
+#define EXE_FILE_ORIGINAL_SIZE (size_t)179858
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +31,8 @@ int main(int argc, char **argv)
         cat zip文件名 >> 本文件名\n\n\
         *注意：第二种方法会覆盖原始文件，请提前备份！\n\
         Windows CMD下运行时，请添加.exe扩展名，否则会报错`No such file or directory`\n\n\
-        解压时，直接运行本文件会默认将文件提取到当前目录，也可通过命令行参数指定解压位置");
+        解压时，直接运行本文件会默认将文件提取到当前目录，也可通过命令行参数指定解压位置\n\n\
+        请按任意键退出...");
         getchar();
         exit(1);
     }
@@ -39,22 +40,14 @@ int main(int argc, char **argv)
     void *data = malloc(zip_size);
     fread(data, zip_size, 1, this_exe);
 
-    char tmp_filename[L_tmpnam];
-    tmpnam(tmp_filename);
-    FILE *tmp_zip = fopen(tmp_filename, "wb+");
-    fwrite(data, zip_size, 1, tmp_zip);
-    fclose(tmp_zip);
-    free(data);
-
     char *dir_name;
     if (argc > 1)
         dir_name = argv[1];
     else
         dir_name = ".";
-    
-    zip_extract(tmp_filename, dir_name, NULL, NULL);
-    remove(tmp_filename);
 
+    zip_stream_extract(data, zip_size, dir_name, NULL, NULL);
+    free(data);
 
     return 0;
 }
